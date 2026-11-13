@@ -14,3 +14,12 @@ export const signupSchema = z.object({
     .regex(/[A-Za-z]/, 'Password must contain a letter')
     .regex(/[0-9]/, 'Password must contain a number'),
 });
+
+export const loginSchema = z.object({
+  email: z.string().trim().toLowerCase().email('Enter a valid email address'),
+  password: z.string().min(1, 'Password is required').max(72),
+});
+
+export const refreshSchema = z.object({
+  refreshToken: z.string().min(1, 'Refresh token is required'),
+});
